@@ -1,0 +1,107 @@
+for baseline API
+
+./gradlew bootBuildImage  --imageName=docker.io/kishorekkota/base-api:v1
+
+docker image push docker.io/kishorekkota/base-api:v1
+
+
+./gradlew bootBuildImage  --imageName=docker.io/kishorekkota/ext-api:v1
+
+docker image push docker.io/kishorekkota/ext-api:v1
+
+
+aws eks update-kubeconfig --region us-east-1  --name my-cluster
+
+
+kubectl create namespace eks-sample-app
+aws sts get-caller-identity
+aws eks --region us-east-1  update-kubeconfig --name test-cluster-api-ext\
+
+
+kubectl config set-context --current --namespace=eks-sample-app
+
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+  -n kube-system \
+  --set clusterName=test-cluster-api-ext \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=aws-load-balancer-controller
+
+
+curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.7/docs/install/iam_policy.json
+
+aws iam create-policy \
+    --policy-name AWSLoadBalancerControllerIAMPolicy \
+    --policy-document file://iam_policy.json
+
+
+  eksctl create iamserviceaccount \
+    --cluster=test-cluster-api-ext \
+    --namespace=kube-system \
+    --name=aws-load-balancer-controller \
+    --role-name AmazonEKSLoadBalancerControllerRole \
+    --attach-policy-arn=arn:aws:iam::593393184947:policy/AWSLoadBalancerControllerIAMPolicy \
+    --approve
+
+
+
+    // FROM bash history
+
+    aws ecr get-login-password --region us-east-1  --profile='adfs' | docker login --username AWS --password-stdin 593393184947.dkr.ecr.us-east-1.amazonaws.com\
+
+    docker tag fe4391597231 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/base-api:v1\
+
+    docker tag 06aa528352f3 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1\
+
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/base-api:v1\
+
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1
+    aws ecr get-login-password --region us-east-1  --profile='adfs' | docker login --username AWS --password-stdin 593393184947.dkr.ecr.us-east-1.amazonaws.com/aws_api_ecr
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1
+    cat ~/.docker/config.json
+    cat ~/.docker/config.json
+    cat ~/.aws/credentials
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1
+    history |  grep -i docker
+    docker tag ext-api:latest  593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1\
+
+    docker images
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1 -v
+    docker push -v 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1
+    docker push --help
+    docker push -a
+    aws ecr get-login-password --region us-east-1  --profile='adfs' | docker login --username AWS --password-stdin 593393184947.dkr.ecr.us-east-1.amazonaws.com/aws_api_ecr
+    aws ecr get-login-password --region us-east-1  --profile='adfs' | docker login --username AWS --password-stdin 593393184947.dkr.ecr.us-east-1.amazonaws.com
+    docker push -v 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/kishorekkota/ext-api:v1
+    cat ~/.zsh_history
+    cat ~/.bash_history
+    cat ~/.zsh_sessions
+    cd ~/.zsh_sessions
+    ls -ltr
+    cd
+    cat ~/.zsh_history
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/aws_api_ecr/ext-api:v1
+    docker tag 06aa528352f3 593393184947.dkr.ecr.us-east-1.amazonaws.com/aws_api_ecr/ext-api:v1\
+
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/aws_api_ecr/ext-api:v1
+    aws ecr get-login-password --region us-east-1  --profile='adfs' | docker login --username AWS --password-stdin 593393184947.dkr.ecr.us-east-1.amazonaws.com/aws_api_ecr
+    docker push 593393184947.dkr.ecr.us-east-1.amazonaws.com/aws_api_ecr/ext-api:v1
+    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 593393184947.dkr.ecr.us-east-1.amazonaws.com
+    aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/norse
+    docker tag fe4391597231 public.ecr.aws/norse/base-api:latest
+    docker push public.ecr.aws/norse/base-api:latest
+    docker tag 06aa528352f3  public.ecr.aws/norse/ext-api:latest
+    docker push public.ecr.aws/norse/est-api:latest
+    docker push public.ecr.aws/norse/ext-api:latest
+    docker push public.ecr.aws/norse/ext-api:latest
+    pwd
+    kubectl create namespace eks-sample-app
+    aws sts get-caller-identity
+    aws eks --region us-east-1  update-kubeconfig --name test-cluster-api-ext\
+
+    kubectl create namespace eks-sample-app
+    cd /Users/kishorekota/git/ApiExtension/deployment\
+
+    ls -ltr
+    kubectl apply -f pod.yaml

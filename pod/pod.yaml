@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-extension
+  namespace: eks-sample-app
+  labels:
+    app: api-extension
+spec:
+  containers:
+    - name: main-container
+      image: public.ecr.aws/norse/base-api:latest
+      ports:
+        - containerPort: 8080
+    - name: sidecar-container
+      image: public.ecr.aws/norse/ext-api:latest
+      ports:
+        - containerPort: 8081

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-extension1
+  namespace: eks-sample-app
+  labels:
+    app: api-extension1
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: api-extension1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: api-extension1
+    spec:
+      containers:
+        - name: main-container
+          image: public.ecr.aws/norse/base-api:latest
+          ports:
+            - containerPort: 8080
+        - name: sidecar-container
+          image: public.ecr.aws/norse/ext-api:latest
+          ports:
+            - containerPort: 8081

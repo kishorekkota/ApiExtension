@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-api-service-ingress1
+  namespace: eks-sample-app
+  annotations:
+    #Share a single ALB with all Ingress rules with a specific group name
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/subnets: subnet-03f0f730bdfe4e2e9,subnet-03eba66569352f19e
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-api-service-cluster-ip1
+                port:
+                  number: 80

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-api-service-cluster-ip1
+  namespace: eks-sample-app
+spec:
+  selector:
+    app: api-extension1
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
