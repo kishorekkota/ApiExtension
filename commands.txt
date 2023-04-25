@@ -105,3 +105,6 @@ aws iam create-policy \
 
     ls -ltr
     kubectl apply -f pod.yaml
+    
+    
+    https://k8s-ekssampl-myapiser-78c944513f-1259674038.us-east-1.elb.amazonaws.com/account
