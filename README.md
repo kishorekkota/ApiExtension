@@ -28,3 +28,14 @@ Key API interaction included in this are.
 - Options#2) Second App will be running in a seperate POD. This model can launch Second App in a POD that is running in same Kuberenetes Node or someother node. Depending on POD running in same node or else where, this add additional latency to the API Execution.
 
 
+### How to run ?
+
+Both application are built using Spring Boot.
+
+Second application is running in Port 8082.
+
+Folder `deployment` has Kube Deployment Config for Deployment, Service and Ingress. 
+
+(To Be Worked)Folder `deployment_pod` has Kube Deployment Config for Deployment, Service and Ingress for POD based connectivity.
+
+
