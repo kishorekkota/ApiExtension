@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-api-service-cluster-ip1
-  namespace: eks-sample-app
+  name: core-application-service
+  namespace: gbp-tenant-namespace
 spec:
   selector:
-    app: api-extension1
+    app: core-application
   type: NodePort
   ports:
     - protocol: TCP

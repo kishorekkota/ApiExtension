@@ -1,0 +1,3 @@
+{
+    "lendingStatus":"$input.active == true ? 'ACTIVE' : 'INACTIVE'",
+}

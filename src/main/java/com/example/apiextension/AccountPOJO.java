@@ -9,13 +9,13 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.Data;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.annotation.Id;
+//import org.springframework.data.annotation.Id;
 
 @Data
 public class AccountPOJO extends BasePOJO {
 
 
-    @Id
+    //@Id
     private String accountId;
 
     private boolean active;
@@ -25,6 +25,9 @@ public class AccountPOJO extends BasePOJO {
     private Double balance;
 
     private JsonNode deposits_api_ext;
+
+
+    private String lendingStatus;
 
 
     @Override

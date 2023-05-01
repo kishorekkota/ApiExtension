@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-extension1
-  namespace: eks-sample-app
+  name: core-application
+  namespace: gbp-tenant-namespace
   labels:
-    app: api-extension1
+    app: core-application
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
-      app: api-extension1
+      app: core-application
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,14 +18,14 @@ spec:
   template:
     metadata:
       labels:
-        app: api-extension1
+        app: core-application
     spec:
       containers:
-        - name: main-container
-          image: public.ecr.aws/norse/base-api:latest
+        - name: core-application-container
+          image: public.ecr.aws/norse/gbp-core-api:1.0
           ports:
             - containerPort: 8080
-        - name: sidecar-container
-          image: public.ecr.aws/norse/ext-api:latest
+        - name: financial-product-sidecar-container
+          image: public.ecr.aws/norse/financial-ext-api:1.0
           ports:
             - containerPort: 8081

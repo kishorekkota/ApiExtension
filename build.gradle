@@ -32,11 +32,10 @@ dependencies {
     implementation 'org.json:json:20180130'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-
-
-
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.apache.velocity:velocity-engine-core:2.3'
+    implementation 'org.aspectj:aspectjrt:1.8.9'
+    implementation 'org.aspectj:aspectjweaver:1.8.9'
 
 }
 
