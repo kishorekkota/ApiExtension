@@ -1,5 +1,6 @@
 package com.example.apiextension;
 
+import com.example.apiextension.utils.TrackExecutionTime;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
@@ -23,6 +24,7 @@ public class AccountService implements GenericService<AccountPOJO> {
 
 
     @Override
+    @TrackExecutionTime
     public AccountPOJO validation(AccountPOJO pojo) {
 
         log.info(" BASE AccountService validation ");
@@ -35,6 +37,7 @@ public class AccountService implements GenericService<AccountPOJO> {
     }
 
     @Override
+    @TrackExecutionTime
     public AccountPOJO pre_processing(AccountPOJO pojo) {
 
         log.info(" BASE AccountService pre_processing ");
@@ -48,12 +51,14 @@ public class AccountService implements GenericService<AccountPOJO> {
     }
 
     @Override
+    @TrackExecutionTime
     public AccountPOJO execute(AccountPOJO pojo) {
         log.info(" BASE AccountService validation ");
         return pojo;
     }
 
     @Override
+    @TrackExecutionTime
     public AccountPOJO post_processing(AccountPOJO pojo) {
         System.out.println(" BASE AccountService post_processing ");
         pojo = this.extClient.post().uri("/post_processing").body(BodyInserters.fromValue(pojo)).retrieve().bodyToMono(AccountPOJO.class).block();
@@ -61,6 +66,7 @@ public class AccountService implements GenericService<AccountPOJO> {
     }
 
     @Override
+    @TrackExecutionTime
     public AccountPOJO event_publishing(AccountPOJO pojo) {
         System.out.println(" BASE AccountService event_publishing ");
 

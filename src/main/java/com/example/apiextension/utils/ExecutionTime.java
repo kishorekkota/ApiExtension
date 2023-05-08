@@ -1,7 +1,9 @@
 package com.example.apiextension.utils;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +12,10 @@ import org.springframework.stereotype.Component;
 @ConditionalOnExpression("${aspect.enabled:true}")
 public class ExecutionTime {
 
-    @Around("@annotation(com.mailshine.springboot.aop.aspectj.advise.TrackExecutionTime)")
+
+    Logger log = org.slf4j.LoggerFactory.getLogger(ExecutionTime.class);
+
+    @Around("@annotation(com.example.apiextension.utils.TrackExecutionTime)")
     public Object executionTime(ProceedingJoinPoint point) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object object = point.proceed();

@@ -2,7 +2,7 @@
 set -e
 set -x
 set -u
-VERSION=1.0
+VERSION=1.1
 
 
 
