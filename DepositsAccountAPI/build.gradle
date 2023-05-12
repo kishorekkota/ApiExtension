@@ -6,6 +6,8 @@ plugins {
 
 ext {
     set('springCloudVersion', "2021.0.5")
+    set('grpc.version', "1.42.1")
+    set('protobuf.version', "3.19.1")
 }
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -30,6 +32,9 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
     implementation 'org.json:json:20180130'
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation 'io.grpc:grpc-stub:1.42.1'
+    implementation 'io.grpc:grpc-protobuf:1.42.1'
 }
 
 tasks.named('test') {
