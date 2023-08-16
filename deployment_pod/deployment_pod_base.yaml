@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-extension_pod
-  namespace: eks-sample-app
+  name: core-application-pod
+  namespace: gbp-pod-tenant-namespace
   labels:
-    app: api-extension_pod
+    app: core-application-pod
 spec:
-  replicas: 5
+  replicas: 4
   selector:
     matchLabels:
-      app: api-extension_pod
+      app: core-application-pod
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,11 +18,14 @@ spec:
   template:
     metadata:
       labels:
-        app: api-extension_pod
+        app: core-application-pod
     spec:
       containers:
-        - name: main-container
-          image: public.ecr.aws/norse/base-api:latest
+        - name: core-application
+          image: public.ecr.aws/norse/gbp-core-api:1.4.6
           ports:
             - containerPort: 8080
+          env:
+            - name: JAVA_OPTS
+              value: -Dspring.profiles.active=pod
 

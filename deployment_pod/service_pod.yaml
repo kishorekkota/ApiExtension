@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: core-application-pod
+  namespace: gbp-pod-tenant-namespace
+spec:
+  selector:
+    app: core-application-pod
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

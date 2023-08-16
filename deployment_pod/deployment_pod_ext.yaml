@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fp-application-pod
+  namespace: gbp-pod-tenant-namespace
+  labels:
+    app: fp-application-pod
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: fp-application-pod
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: fp-application-pod
+    spec:
+      containers:
+        - name: fp-application
+          image: public.ecr.aws/norse/financial-ext-api:1.4.5
+          ports:
+            - containerPort: 8082
+

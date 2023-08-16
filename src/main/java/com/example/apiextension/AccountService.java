@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class AccountService implements GenericService<AccountPOJO> {
 
-    Log log = org.apache.commons.logging.LogFactory.getLog(AccountService.class);
+    static Log log = org.apache.commons.logging.LogFactory.getLog(AccountService.class);
 
+    @Value("${hostname}")
+    private  String  hostname;
 
-
-
-    private final WebClient extClient = WebClient.builder().baseUrl("http://localhost:8082").build();
+    private WebClient extClient;
 
 
 
@@ -27,8 +28,9 @@ public class AccountService implements GenericService<AccountPOJO> {
     @TrackExecutionTime
     public AccountPOJO validation(AccountPOJO pojo) {
 
-        log.info(" BASE AccountService validation ");
+        extClient = WebClient.builder().baseUrl("http://localhost:8082").build();
 
+        log.info(" BASE AccountService validation // "+hostname);
 
 
         pojo = this.extClient.post().uri("/validation").body(BodyInserters.fromValue(pojo)).retrieve().bodyToMono(AccountPOJO.class).block();
@@ -42,7 +44,6 @@ public class AccountService implements GenericService<AccountPOJO> {
 
         log.info(" BASE AccountService pre_processing ");
 
-
         pojo = this.extClient.post().uri("/pre_processing").body(BodyInserters.fromValue(pojo)).retrieve().bodyToMono(AccountPOJO.class).block();
 
         log.info(" BASE AccountService pre_processing ");
@@ -53,7 +54,7 @@ public class AccountService implements GenericService<AccountPOJO> {
     @Override
     @TrackExecutionTime
     public AccountPOJO execute(AccountPOJO pojo) {
-        log.info(" BASE AccountService validation ");
+        log.info(" BASE AccountService validation "+hostname);
         return pojo;
     }
 
